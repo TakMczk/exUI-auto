@@ -61,6 +61,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let drawView = DrawView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width
                                               , height: view.frame.size.height))
         //これがSubViewの大きさ
@@ -219,64 +220,55 @@ extension ViewController: NISessionDelegate {
             rectangle.fill()
             
 
-            if istap == 1 {
-                let rectangle = UIBezierPath(rect: CGRect(x: 50, y: 200, width: 300, height: 400))
-                // 内側の色
-                UIColor(red: 1, green: 1, blue: 1, alpha: 1).setFill()
-                // 内側を塗りつぶす
-                rectangle.fill()
-                // 線を塗りつぶす
-                rectangle.stroke()
-                
+            // UIImage インスタンスの生成
+            let image1:UIImage = UIImage(named:"lv1")!
+            let image2:UIImage = UIImage(named:"lv2")!
+            let image3:UIImage = UIImage(named:"lv3")!
+            let image4:UIImage = UIImage(named:"lv4")!
+            
+            // UIImageView 初期化
+            let imageView = UIImageView(image:image1)
+            let imageView2 = UIImageView(image:image2)
+            let imageView3 = UIImageView(image:image3)
+            let imageView4 = UIImageView(image:image4)
+            
+            // スクリーンの縦横サイズを取得
+            let screenWidth:CGFloat = frame.size.width
+            let screenHeight:CGFloat = frame.size.height
+            
+            // 画像の縦横サイズを取得
+            let imgWidth:CGFloat = image1.size.width
+            let imgHeight:CGFloat = image1.size.height
+            
+            // 画像サイズをスクリーン幅に合わせる
+            let scale:CGFloat = screenWidth / imgWidth
+            let rect:CGRect =
+                CGRect(x:0, y:0, width:imgWidth*scale, height:imgHeight*scale)
+            
+            // ImageView frame をCGRectで作った矩形に合わせる
+            imageView.frame = rect;
+            imageView2.frame = rect;
+            imageView3.frame = rect;
+            imageView4.frame = rect;
+            
+            // 画像の中心を画面の中心に設定
+            imageView.center = CGPoint(x:screenWidth/2, y:screenHeight/2)
+            imageView2.center = CGPoint(x:screenWidth/2, y:screenHeight/2)
+            imageView3.center = CGPoint(x:screenWidth/2, y:screenHeight/2)
+            imageView4.center = CGPoint(x:screenWidth/2, y:screenHeight/2)
+            
+            
+            // UIImageViewのインスタンスをビューに追加
+            
+            if r_for_ui<1 {
+                self.addSubview(imageView)
+            }else if 1<=r_for_ui && r_for_ui<2 {
+                self.addSubview(imageView2)
+            }else if 2<=r_for_ui && r_for_ui<3 {
+                self.addSubview(imageView3)
+            }else{
+                self.addSubview(imageView4)
             }
-            
-            // 円
-            let circle = UIBezierPath(arcCenter: CGPoint(x: 200 + offsetX*200, y: 400 - offsetY*200), radius: 150 - r_for_ui*100, startAngle: 0, endAngle: CGFloat(Double.pi)*2, clockwise: true)
-            // 内側の色
-            UIColor(red: 0, green: 0, blue: 1, alpha: 0.3).setFill()
-            // 内側を塗りつぶす
-            circle.fill()
-            // 線の色
-            UIColor(red: 0, green: 0, blue: 1, alpha: 1.0).setStroke()
-            // 線の太さ
-            circle.lineWidth = 2.0
-            // 線を塗りつぶす
-            circle.stroke()
-            
-            
-            //ラベル
-            
-//            let label = UILabel()
-//            label.frame = CGRect(x:200 + offsetX*200, y:400 - offsetY*200, width:160, height:30)
-//            label.text = "metaBox"
-//            addSubview(label)
-            
-            
-            
-            //中心のやつ
-            let circle_center = UIBezierPath(arcCenter: CGPoint(x: 200, y: 400), radius: 100, startAngle: 0, endAngle: CGFloat(Double.pi)*2, clockwise: true)
-            // 線の色
-            UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).setStroke()
-            // 線の太さ
-            circle_center.lineWidth = 1.0
-            // 線を塗りつぶす
-            circle_center.stroke()
-            
-            
-            // ダミー円
-//            let dam_circle = UIBezierPath(arcCenter: CGPoint(x:300 + offsetX*500, y: 600 ), radius: 50 , startAngle: 0, endAngle: CGFloat(Double.pi)*2, clockwise: true)
-//            // 内側の色
-//            UIColor(red: 1, green: 0, blue: 0, alpha: 0.3).setFill()
-//            // 内側を塗りつぶす
-//            dam_circle.fill()
-//            // 線の色
-//            UIColor(red: 1, green: 0, blue: 0, alpha: 1.0).setStroke()
-//            // 線の太さ
-//            dam_circle.lineWidth = 2.0
-//            // 線を塗りつぶす
-//            dam_circle.stroke()
-            
-
             
         }
 
